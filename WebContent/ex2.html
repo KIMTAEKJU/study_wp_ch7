@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+<script>
+	// 엘레먼트를 골라야 하는 시점1  Vanila JavaScript
+	window.onload = function(){
+		console.log("여기서 시작1");
+	};
+
+	// 엘레먼트를 골라야 하는 시점 2(jQuery 사용)
+	jQuery(document).ready(function() {
+		console.log("여기서 시작2");
+	});
+	
+	// 엘레먼트를 골라야 하는 시점 3(jQuery 사용)
+	$(document).ready( () => {
+		console.log("여기서 시작3");
+	});
+	
+	// 엘레먼트를 골라야 하는 시점 4(jQuery 사용)  DOM이 로딩된 다음에 실행됨
+	$( () => {
+		console.log("여기서 시작4");
+	});
+
+</script>
+
+<script type="text/javascript">
+	$( () => {
+		setTimeout(() => {
+			var $li = $("li");
+			$li.css("color", "#f00");
+			
+			// jquery object ?
+			console.log($li.length);
+			console.log($li[0] + ":" + typeof $li[0]);
+			console.log($li.get(0) + ":" + typeof $li[0]); // 매핑되어있는 제이쿼리객체를 겟으로 가져옴
+			
+			//error
+			//$li[0].css("color", "#f00") // html 엘레먼트는 css라는 메소드가없음 저걸 매핑한 제이쿼리 객체의 메소드
+			// $li[0].style.color = "#00f" // 이렇게 해줘야한다
+			// $li.get(3).style.color = "#00f"; 
+			
+			// wrap jquery object
+			$($li[1]).css("color", "#00f");
+		}, 2000);
+	});
+</script>
+</head>
+<body>
+<p>
+	<ul>
+		<li>123</li>
+		<li>234</li>
+		<li>345</li>
+		<li>567</li>
+	</ul>
+</p>
+</body>
+</html>

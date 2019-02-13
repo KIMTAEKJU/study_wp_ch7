@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>sample3</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript">
+$(function(){
+
+	$.ajax({ // 파라미터들  파라미터가 많아서 객체에넣어서 전달
+		url: 'sample3.xml', // 파일
+		dataType: 'xml', // 내가받을 데이터타입
+		success : function(data){ // 콜백함수
+			$("item",data).each(function(){ // dom에서 item을 찾아서 각 item에
+				//xml 파싱을 해줌
+				var htmls = "<dt>" + $("title", this).text() + "</dt>" +
+							"<dd>" + $("description", this).text() + "</dd>";
+				$("dl").append("<dt><a href='"+$("link",this).text()+"'>"+$("title",this).text()+"</a></dt><dd>"+$("description",this).text()+"</dd>");
+			});
+		}
+	});
+});
+		</script>
+	</head>
+	<body>
+		<dl>
+		
+		</dl>
+	</body>
+</html>
